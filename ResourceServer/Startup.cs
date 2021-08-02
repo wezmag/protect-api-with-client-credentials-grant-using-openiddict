@@ -37,7 +37,7 @@ namespace ResourceServer
                 .AddValidation(options =>
                 {
                     // Auth Server URL
-                    options.SetIssuer("https://localhost:44315/");
+                    options.SetIssuer("https://localhost:44337/");
 
                     options.UseIntrospection()
                           .SetClientId("resource_server")
