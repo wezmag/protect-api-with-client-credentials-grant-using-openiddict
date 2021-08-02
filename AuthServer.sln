@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer", "AuthServer\Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceServer", "ResourceServer\ResourceServer.csproj", "{07C16D06-E8FE-4BAB-B52D-AE5D1065F850}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{64037F6B-666A-463E-85A0-BE17776EFF05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{07C16D06-E8FE-4BAB-B52D-AE5D1065F850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07C16D06-E8FE-4BAB-B52D-AE5D1065F850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07C16D06-E8FE-4BAB-B52D-AE5D1065F850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64037F6B-666A-463E-85A0-BE17776EFF05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64037F6B-666A-463E-85A0-BE17776EFF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64037F6B-666A-463E-85A0-BE17776EFF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64037F6B-666A-463E-85A0-BE17776EFF05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
