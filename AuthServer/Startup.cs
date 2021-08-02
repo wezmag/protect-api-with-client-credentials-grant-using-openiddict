@@ -64,6 +64,8 @@ namespace AuthServer
 
                 });
             services.AddControllersWithViews();
+
+            services.AddHostedService<TestClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
