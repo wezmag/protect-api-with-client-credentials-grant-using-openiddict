@@ -1,6 +1,8 @@
+using AuthServer.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +25,44 @@ namespace AuthServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseOpenIddict();
+            });
+
+            //OpenIddict
+            services.AddOpenIddict()
+                .AddCore(options =>
+                {
+                    options.UseEntityFrameworkCore()
+                        .UseDbContext<AppDbContext>();
+                })
+                .AddServer(options =>
+                {
+                    options.AllowClientCredentialsFlow();
+
+                    options
+                        // 取得 accesstoken token 的 endpoint
+                        .SetTokenEndpointUris("/connect/token")
+                        // 讓 resource server 檢查 access token 的 endpoint
+                        .SetIntrospectionEndpointUris("/connect/introspect")
+                        ;
+
+                    // 開發用的KEY，Production 建議用存在本機的 X.509 certificates
+                    // DisableAccessTokenEncryption Production不建議使用
+                    options
+                        .AddEphemeralEncryptionKey()
+                        .AddEphemeralSigningKey()
+                        .DisableAccessTokenEncryption()
+                        ;
+
+                    options
+                        .UseAspNetCore()
+                        .EnableTokenEndpointPassthrough()
+                        ;
+
+                });
             services.AddControllersWithViews();
         }
 
@@ -43,7 +83,7 @@ namespace AuthServer
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
