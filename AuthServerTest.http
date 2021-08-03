@@ -1,0 +1,14 @@
+# @name login
+POST https://localhost:44337/connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id=my-console-app
+&client_secret=388D45FA-B36B-4988-BA59-B187D329C207
+
+###
+@authToken = {{login.response.body.$.access_token}}
+
+GET https://localhost:44358/WeatherForecast HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer {{authToken}}     
